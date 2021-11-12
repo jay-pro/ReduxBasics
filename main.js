@@ -4,12 +4,11 @@ const { createStore } = window.Redux;
 
 //set up redux store
 //state
-
 //reducer
-
 //store
 
-const initialState = ["Listen to music"];
+//const initialState = ["Listen to music"];
+const initialState = JSON.parse(localStorage.getItem("hobby_list")) || [];
 
 const hobbyReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -75,4 +74,5 @@ store.subscribe(() => {
   console.log("STATE UPDATE: ", store.getState());
   const newHobbyList = store.getState();
   renderHobbyList(newHobbyList); //đem nội dung đó lên UI
+  localStorage.setItem("hobby_list", JSON.stringify(newHobbyList));
 });
